@@ -1,0 +1,86 @@
+{
+  "sectionId": "demo-w12x26",
+  "tolerance": {
+    "reactionsKip": 0.001,
+    "shearKip": 0.001,
+    "momentKipFt": 0.001,
+    "deflectionIn": 0.002,
+    "locationFt": 0.02
+  },
+  "cases": [
+    {
+      "id": "simply-supported-uniform-load",
+      "description": "20 ft simply supported beam with 1 kip/ft over the full span; self-weight excluded.",
+      "input": {
+        "supportType": "simply-supported",
+        "spanFt": 20,
+        "pointLoads": [],
+        "distributedLoads": [
+          {
+            "startFt": 0,
+            "endFt": 20,
+            "loadKipPerFt": 1
+          }
+        ]
+      },
+      "expected": {
+        "leftReactionKip": 10,
+        "rightReactionKip": 10,
+        "maxShearAbsKip": 10,
+        "maxMomentAbsKipFt": 50,
+        "maxMomentLocationFt": 10,
+        "maxDeflectionAbsIn": 0.6085192698,
+        "maxDeflectionLocationFt": 10
+      }
+    },
+    {
+      "id": "simply-supported-midspan-point-load",
+      "description": "12 ft simply supported beam with a 4 kip midspan point load.",
+      "input": {
+        "supportType": "simply-supported",
+        "spanFt": 12,
+        "pointLoads": [
+          {
+            "positionFt": 6,
+            "loadKip": 4
+          }
+        ],
+        "distributedLoads": []
+      },
+      "expected": {
+        "leftReactionKip": 2,
+        "rightReactionKip": 2,
+        "maxShearAbsKip": 2,
+        "maxMomentAbsKipFt": 12,
+        "maxMomentLocationFt": 6,
+        "maxDeflectionAbsIn": 0.0420608519,
+        "maxDeflectionLocationFt": 6
+      }
+    },
+    {
+      "id": "cantilever-tip-point-load",
+      "description": "10 ft cantilever with a 2 kip downward point load at its free end.",
+      "input": {
+        "supportType": "cantilever",
+        "spanFt": 10,
+        "pointLoads": [
+          {
+            "positionFt": 10,
+            "loadKip": 2
+          }
+        ],
+        "distributedLoads": []
+      },
+      "expected": {
+        "leftReactionKip": 2,
+        "rightReactionKip": 0,
+        "fixedEndReactionMomentKipFt": -20,
+        "maxShearAbsKip": 2,
+        "maxMomentAbsKipFt": 20,
+        "maxMomentLocationFt": 0,
+        "maxDeflectionAbsIn": 0.1947261663,
+        "maxDeflectionLocationFt": 10
+      }
+    }
+  ]
+}

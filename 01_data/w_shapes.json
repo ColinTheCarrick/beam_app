@@ -1,0 +1,26 @@
+{
+  "datasetVersion": "prototype-placeholder-1",
+  "dataStatus": "synthetic-placeholder",
+  "notice": "All section properties in this file are fabricated illustrative values created for prototyping at the user's request. They are not verified AISC properties and must not be used for real beam selection or design.",
+  "plannedVerificationSource": "AISC Shapes Database v16.0; replace and independently verify this placeholder before real use.",
+  "material": {
+    "designation": "A992 (demo assumption)",
+    "yieldStrengthKsi": 50,
+    "elasticModulusKsi": 29000
+  },
+  "sections": [
+    {
+      "id": "demo-w12x26",
+      "displayName": "Demo W12x26 - synthetic properties (not for design)",
+      "designation": "DEMO W12x26",
+      "weightLbFt": 26,
+      "depthIn": 12.2,
+      "flangeWidthIn": 6.5,
+      "webThicknessIn": 0.24,
+      "flangeThicknessIn": 0.38,
+      "IxIn4": 204,
+      "SxIn3": 33.4,
+      "propertyStatus": "synthetic-placeholder"
+    }
+  ]
+}

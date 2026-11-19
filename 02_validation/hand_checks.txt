@@ -1,0 +1,29 @@
+Beam Designer prototype hand checks
+===================================
+
+These calculations use the synthetic demo section in 01_data/w_shapes.json:
+E = 29,000 ksi, Ix = 204 in^4. These checks test arithmetic and diagrams only.
+They do not verify a real W12x26 or establish design adequacy.
+
+1. Simply supported, 20 ft span, 1 kip/ft uniform load over the full span
+   Self-weight is excluded.
+   Reactions: RA = RB = wL/2 = 10 kip.
+   Maximum shear magnitude: 10 kip.
+   Maximum moment: wL^2/8 = 50 kip-ft.
+   Maximum deflection:
+     5wL^4/(384EI), with w = 1/12 kip/in and L = 240 in
+     = 0.6085192698 in, which rounds to 0.609 in.
+
+2. Simply supported, 12 ft span, 4 kip downward point load at midspan
+   Reactions: RA = RB = P/2 = 2 kip.
+   Maximum shear magnitude: 2 kip.
+   Maximum moment: PL/4 = 12 kip-ft.
+   Maximum deflection: PL^3/(48EI), with L = 144 in
+     = 0.0420608519 in.
+
+3. Cantilever, 10 ft span, 2 kip downward point load at the free end
+   Fixed vertical reaction: 2 kip.
+   Fixed-end reaction moment: -PL = -20 kip-ft.
+   Maximum internal moment magnitude: PL = 20 kip-ft at the fixed end.
+   Maximum deflection: PL^3/(3EI), with L = 120 in
+     = 0.1947261663 in.
