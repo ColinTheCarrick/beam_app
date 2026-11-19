@@ -17,6 +17,12 @@ and limitations; they are not a complete code-compliant beam design.
 ## Inputs and assumptions
 - Support type and span, entered in feet.
 - Point and uniform loads, with locations and extents where applicable.
+- Use sliders with live readouts: span 0-100 ft in 0.5 ft steps; point loads
+  -20 to 20 kip in 0.25 kip steps; uniform loads -5 to 5 kip/ft in 0.1 kip/ft
+  steps; load positions 0 to the current span in 0.25 ft steps. A zero span is
+  invalid for analysis.
+- If the span is reduced, clamp point positions to the new span and adjust
+  uniform-load extents so they remain within it.
 - A steel W-shape with, at minimum, designation, weight, dimensions,
   strong-axis moment of inertia (Ix), and section modulus (Sx). Prototype
   properties are explicitly synthetic. Before real use, replace them with
@@ -56,6 +62,9 @@ and limitations; they are not a complete code-compliant beam design.
 
 ## Look and feel
 Clean and professional, with an example beam loaded when it opens.
+Add a header color-scheme dropdown with Light, Dark mode, Night mode, Ocean,
+Sunset, and Forest themes. Apply each theme consistently to the page, controls,
+notices, and analysis diagrams.
 
 ## Validation
 For a 20 ft simply supported W12x26 with a 1 kip/ft uniform load, verify

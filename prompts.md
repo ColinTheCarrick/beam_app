@@ -15,3 +15,12 @@
 - **Asked:** Proceed with the next steps; use made-up beam properties for now and stop web research.
   **Changed:** Added a single-file beam analysis prototype, explicitly synthetic shape data, hand-check cases, a repeatable calculation validation script, and updated the specification with the agreed preliminary-check assumptions.
   **Worked:** Yes; all three calculation cases passed, the app scripts parsed, HTML/JSON checks passed, and local static hosting served the app and data. Section properties remain explicitly synthetic.
+- **Asked:** Separate overlapping point-load and distributed-load labels in the beam diagram.
+  **Changed:** Put point-load and uniform-load annotations on distinct horizontal rows and added a gap in the distributed-load graphic around point loads.
+  **Worked:** Yes; reproduced the overlap in the browser, then verified the labels and arrows are separated after the change.
+- **Asked:** Change span, load, and load-position inputs to sliders.
+  **Changed:** Added a 0-100 ft span slider, signed point/uniform load sliders, position sliders limited to the current span, live value readouts, and documented the ranges in `spec.md`.
+  **Worked:** Yes; browser checks confirmed bounds, readouts, span clamping, and zero-span validation; all three calculation regression cases passed.
+- **Asked:** Add a top dropdown for color schemes, including dark mode, night mode, and fun options.
+  **Changed:** Added a header theme selector and themed the page controls, panels, notices, and analysis diagrams.
+  **Worked:** Yes; browser checks confirmed all six themes update page, panel, text, diagram arrow, and browser theme colors. Mobile layout has no horizontal overflow, and all three calculation regression cases passed.

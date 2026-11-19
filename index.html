@@ -1,18 +1,272 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f4f6fa">
+    <meta name="theme-color" id="theme-color-meta" content="#f4f6fa">
     <title>Beam Designer - Prototype</title>
     <style>
       :root {
         color-scheme: light;
+        --page-bg: #f4f6fa;
+        --surface: #ffffff;
+        --surface-raised: #fbfcfe;
+        --surface-soft: #fafbfd;
+        --text: #172338;
+        --text-label: #34445c;
+        --text-muted: #687990;
+        --text-secondary: #52647a;
+        --text-soft: #718198;
+        --border: #dfe5ee;
+        --border-soft: #e3e8f0;
+        --border-control: #c9d2df;
+        --border-row: #e2e8f0;
+        --accent: #1d5ca8;
+        --accent-hover: #174b8a;
+        --accent-contrast: #ffffff;
+        --accent-soft: rgba(47, 105, 184, 0.2);
+        --shadow: rgba(27, 44, 71, 0.04);
+        --warning-bg: #fff2ee;
+        --warning-border: #e8b3a5;
+        --warning-accent: #be462c;
+        --warning-text: #64291d;
+        --badge-bg: #fff6e6;
+        --badge-border: #efc579;
+        --badge-text: #80530c;
+        --notice-text: #80530c;
+        --error: #a22d1e;
+        --pass: #177044;
+        --fail: #a22d1e;
+        --pending: #80530c;
+        --divider: #e8edf3;
+        --metric-border: #e1e7ef;
+        --chart-zero: #b7c1ce;
+        --chart-curve: #2471bd;
+        --chart-beam: #263c59;
+        --chart-support-fill: #dce5ef;
+        --chart-support-stroke: #263c59;
+        --chart-load: #bd4d35;
+        --chart-load-text: #8b3323;
         font-family: "Segoe UI", Arial, sans-serif;
-        color: #172338;
-        background: #f4f6fa;
+        color: var(--text);
+        background: var(--page-bg);
         font-synthesis: none;
         text-rendering: optimizeLegibility;
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --page-bg: #101725;
+        --surface: #182337;
+        --surface-raised: #202d43;
+        --surface-soft: #1c2940;
+        --text: #e8eef8;
+        --text-label: #d4dfef;
+        --text-muted: #b0bfd4;
+        --text-secondary: #c1ccdc;
+        --text-soft: #9cacc2;
+        --border: #34445c;
+        --border-soft: #384962;
+        --border-control: #4a5b74;
+        --border-row: #34445c;
+        --accent: #8ab8ff;
+        --accent-hover: #a7caff;
+        --accent-contrast: #101725;
+        --accent-soft: rgba(138, 184, 255, 0.28);
+        --shadow: rgba(0, 0, 0, 0.18);
+        --warning-bg: #38252a;
+        --warning-border: #80515b;
+        --warning-accent: #ff8c77;
+        --warning-text: #ffd9d1;
+        --badge-bg: #3a3324;
+        --badge-border: #806b3c;
+        --badge-text: #ffe0a2;
+        --notice-text: #ffe0a2;
+        --error: #ff9a8f;
+        --pass: #78d6a2;
+        --fail: #ff9a8f;
+        --pending: #ffe0a2;
+        --divider: #34445c;
+        --metric-border: #34445c;
+        --chart-zero: #667991;
+        --chart-curve: #8ab8ff;
+        --chart-beam: #dce7f7;
+        --chart-support-fill: #2b3e59;
+        --chart-support-stroke: #c5d4e8;
+        --chart-load: #ff9a82;
+        --chart-load-text: #ffc4b7;
+      }
+
+      :root[data-theme="night"] {
+        color-scheme: dark;
+        --page-bg: #080d20;
+        --surface: #111a35;
+        --surface-raised: #192447;
+        --surface-soft: #151f3e;
+        --text: #e9eaff;
+        --text-label: #d9dcff;
+        --text-muted: #b0b9dc;
+        --text-secondary: #c1c8e7;
+        --text-soft: #929ec8;
+        --border: #303c68;
+        --border-soft: #34416e;
+        --border-control: #485684;
+        --border-row: #303c68;
+        --accent: #9ba8ff;
+        --accent-hover: #bac2ff;
+        --accent-contrast: #0c1230;
+        --accent-soft: rgba(155, 168, 255, 0.3);
+        --shadow: rgba(0, 0, 0, 0.28);
+        --warning-bg: #30243b;
+        --warning-border: #674b7c;
+        --warning-accent: #ff88c8;
+        --warning-text: #f4d8ff;
+        --badge-bg: #34284c;
+        --badge-border: #65518c;
+        --badge-text: #e3d1ff;
+        --notice-text: #e3d1ff;
+        --error: #ff9cc9;
+        --pass: #80e2c3;
+        --fail: #ff9cc9;
+        --pending: #e3d1ff;
+        --divider: #303c68;
+        --metric-border: #303c68;
+        --chart-zero: #6573a0;
+        --chart-curve: #a1b4ff;
+        --chart-beam: #dce3ff;
+        --chart-support-fill: #253460;
+        --chart-support-stroke: #c7d0ff;
+        --chart-load: #ff76c7;
+        --chart-load-text: #ffb6df;
+      }
+
+      :root[data-theme="ocean"] {
+        color-scheme: light;
+        --page-bg: #eaf5f6;
+        --surface: #fbffff;
+        --surface-raised: #f2fbfb;
+        --surface-soft: #f4fbfb;
+        --text: #17333a;
+        --text-label: #24464e;
+        --text-muted: #54717a;
+        --text-secondary: #3e626a;
+        --text-soft: #6b8990;
+        --border: #c8dfe1;
+        --border-soft: #d4e8e9;
+        --border-control: #aecbd0;
+        --border-row: #cde2e4;
+        --accent: #087f8c;
+        --accent-hover: #066a75;
+        --accent-contrast: #ffffff;
+        --accent-soft: rgba(8, 127, 140, 0.2);
+        --shadow: rgba(16, 73, 82, 0.06);
+        --warning-bg: #fff4e8;
+        --warning-border: #edc49f;
+        --warning-accent: #d36b38;
+        --warning-text: #6d3e25;
+        --badge-bg: #e2f5ee;
+        --badge-border: #9acdb8;
+        --badge-text: #285d48;
+        --notice-text: #285d48;
+        --error: #a44232;
+        --pass: #21744f;
+        --fail: #a44232;
+        --pending: #806121;
+        --divider: #d7e8e9;
+        --metric-border: #d3e4e6;
+        --chart-zero: #a5c4c8;
+        --chart-curve: #098a9a;
+        --chart-beam: #22515a;
+        --chart-support-fill: #d0e7e9;
+        --chart-support-stroke: #22515a;
+        --chart-load: #d96445;
+        --chart-load-text: #91412f;
+      }
+
+      :root[data-theme="sunset"] {
+        color-scheme: light;
+        --page-bg: #fff4e9;
+        --surface: #fffdf9;
+        --surface-raised: #fff9f1;
+        --surface-soft: #fff8f0;
+        --text: #3b2b35;
+        --text-label: #573c49;
+        --text-muted: #806a77;
+        --text-secondary: #6a5360;
+        --text-soft: #987f89;
+        --border: #ead8d0;
+        --border-soft: #f0dfd6;
+        --border-control: #d9c3bc;
+        --border-row: #ebd8d0;
+        --accent: #b54d69;
+        --accent-hover: #963c57;
+        --accent-contrast: #ffffff;
+        --accent-soft: rgba(181, 77, 105, 0.2);
+        --shadow: rgba(89, 49, 56, 0.06);
+        --warning-bg: #fff0e8;
+        --warning-border: #edb8a4;
+        --warning-accent: #cd5c3a;
+        --warning-text: #713525;
+        --badge-bg: #fff0cf;
+        --badge-border: #edca85;
+        --badge-text: #77521c;
+        --notice-text: #77521c;
+        --error: #a23d32;
+        --pass: #39704b;
+        --fail: #a23d32;
+        --pending: #77521c;
+        --divider: #efdfd6;
+        --metric-border: #eadbd3;
+        --chart-zero: #cdb9b2;
+        --chart-curve: #b44f76;
+        --chart-beam: #63404e;
+        --chart-support-fill: #f0d9ce;
+        --chart-support-stroke: #63404e;
+        --chart-load: #dd6b3f;
+        --chart-load-text: #963f2a;
+      }
+
+      :root[data-theme="forest"] {
+        color-scheme: light;
+        --page-bg: #edf4eb;
+        --surface: #fbfef9;
+        --surface-raised: #f5faf2;
+        --surface-soft: #f4f8f1;
+        --text: #25352a;
+        --text-label: #344a39;
+        --text-muted: #617567;
+        --text-secondary: #4e6555;
+        --text-soft: #7d9181;
+        --border: #d4e1d3;
+        --border-soft: #dce8da;
+        --border-control: #bdcfbd;
+        --border-row: #d6e3d5;
+        --accent: #34734a;
+        --accent-hover: #285d3b;
+        --accent-contrast: #ffffff;
+        --accent-soft: rgba(52, 115, 74, 0.2);
+        --shadow: rgba(36, 76, 46, 0.06);
+        --warning-bg: #fff5e7;
+        --warning-border: #e9c79d;
+        --warning-accent: #be6344;
+        --warning-text: #684128;
+        --badge-bg: #f2f0d8;
+        --badge-border: #d5cf91;
+        --badge-text: #60551d;
+        --notice-text: #60551d;
+        --error: #9c4235;
+        --pass: #2d7549;
+        --fail: #9c4235;
+        --pending: #74631f;
+        --divider: #dce7da;
+        --metric-border: #d7e3d5;
+        --chart-zero: #b6c8b6;
+        --chart-curve: #37845d;
+        --chart-beam: #344f3c;
+        --chart-support-fill: #d7e7d4;
+        --chart-support-stroke: #344f3c;
+        --chart-load: #bd5b43;
+        --chart-load-text: #8c4031;
       }
 
       * { box-sizing: border-box; }
@@ -20,7 +274,7 @@
       body {
         margin: 0;
         min-width: 320px;
-        background: #f4f6fa;
+        background: var(--page-bg);
       }
 
       button, input, select { font: inherit; }
@@ -39,9 +293,22 @@
         margin-bottom: 20px;
       }
 
+      .header-actions {
+        display: flex;
+        align-items: flex-end;
+        gap: 12px;
+      }
+
+      .theme-picker {
+        min-width: 165px;
+        gap: 5px;
+        color: var(--text-label);
+        font-size: 0.75rem;
+      }
+
       .eyebrow {
         margin: 0 0 6px;
-        color: #52657e;
+        color: var(--text-secondary);
         font-size: 0.75rem;
         font-weight: 700;
         letter-spacing: 0.12em;
@@ -52,17 +319,17 @@
       h1 { margin-bottom: 4px; font-size: clamp(1.8rem, 3vw, 2.45rem); }
       h2 { margin-bottom: 14px; font-size: 1.1rem; }
       h3 { margin-bottom: 10px; font-size: 0.94rem; }
-      .subtitle { margin: 0; color: #607087; }
+      .subtitle { margin: 0; color: var(--text-muted); }
 
       .badge {
         display: inline-flex;
         align-items: center;
         min-height: 28px;
         padding: 4px 10px;
-        border: 1px solid #efc579;
+        border: 1px solid var(--badge-border);
         border-radius: 999px;
-        background: #fff6e6;
-        color: #80530c;
+        background: var(--badge-bg);
+        color: var(--badge-text);
         font-size: 0.76rem;
         font-weight: 700;
         white-space: nowrap;
@@ -71,11 +338,11 @@
       .warning {
         margin-bottom: 20px;
         padding: 14px 16px;
-        border: 1px solid #e8b3a5;
-        border-left: 5px solid #be462c;
+        border: 1px solid var(--warning-border);
+        border-left: 5px solid var(--warning-accent);
         border-radius: 8px;
-        background: #fff2ee;
-        color: #64291d;
+        background: var(--warning-bg);
+        color: var(--warning-text);
         line-height: 1.45;
       }
 
@@ -91,10 +358,10 @@
       .panel {
         margin-bottom: 16px;
         padding: 20px;
-        border: 1px solid #dfe5ee;
+        border: 1px solid var(--border);
         border-radius: 12px;
-        background: #fff;
-        box-shadow: 0 3px 14px rgba(27, 44, 71, 0.04);
+        background: var(--surface);
+        box-shadow: 0 3px 14px var(--shadow);
       }
 
       .form-panel { position: sticky; top: 16px; }
@@ -111,7 +378,7 @@
         display: flex;
         flex-direction: column;
         gap: 6px;
-        color: #34445c;
+        color: var(--text-label);
         font-size: 0.83rem;
         font-weight: 650;
       }
@@ -120,21 +387,45 @@
         width: 100%;
         min-height: 40px;
         padding: 8px 10px;
-        border: 1px solid #c9d2df;
+        border: 1px solid var(--border-control);
         border-radius: 7px;
-        background: #fff;
-        color: #172338;
+        background: var(--surface);
+        color: var(--text);
+      }
+
+      input[type="range"] {
+        min-height: 24px;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        accent-color: var(--accent);
+        cursor: pointer;
       }
 
       input:focus, select:focus, button:focus-visible {
-        outline: 3px solid rgba(47, 105, 184, 0.2);
+        outline: 3px solid var(--accent-soft);
         outline-offset: 1px;
-        border-color: #3e78c2;
+        border-color: var(--accent);
       }
 
-      .unit { color: #718198; font-weight: 400; }
-      .hint { margin: 6px 0 0; color: #718198; font-size: 0.76rem; line-height: 1.4; }
-      .divider { height: 1px; margin: 18px 0; background: #e8edf3; }
+      .slider-label {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .slider-label output {
+        color: var(--accent);
+        font-size: 0.76rem;
+        font-weight: 700;
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .unit { color: var(--text-soft); font-weight: 400; }
+      .hint { margin: 6px 0 0; color: var(--text-soft); font-size: 0.76rem; line-height: 1.4; }
+      .divider { height: 1px; margin: 18px 0; background: var(--divider); }
       .section-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
       .section-head h3 { margin: 0 0 10px; }
 
@@ -145,9 +436,9 @@
         gap: 8px;
         margin-bottom: 10px;
         padding: 10px;
-        border: 1px solid #e2e8f0;
+        border: 1px solid var(--border-row);
         border-radius: 8px;
-        background: #fafbfd;
+        background: var(--surface-soft);
       }
 
       .load-row label { font-size: 0.73rem; }
@@ -160,39 +451,39 @@
       button {
         min-height: 40px;
         padding: 8px 12px;
-        border: 1px solid #c9d2df;
+        border: 1px solid var(--border-control);
         border-radius: 7px;
-        background: #fff;
-        color: #263c59;
+        background: var(--surface);
+        color: var(--text-label);
         cursor: pointer;
         font-weight: 650;
       }
 
-      button:hover { background: #f3f6fa; }
+      button:hover { background: var(--surface-raised); }
       button:disabled { cursor: not-allowed; opacity: 0.6; }
       .primary {
         width: 100%;
         margin-top: 16px;
-        border-color: #1d5ca8;
-        background: #1d5ca8;
-        color: #fff;
+        border-color: var(--accent);
+        background: var(--accent);
+        color: var(--accent-contrast);
       }
 
-      .primary:hover { background: #174b8a; }
+      .primary:hover { background: var(--accent-hover); }
       .small-button { min-height: 32px; padding: 5px 8px; font-size: 0.77rem; }
 
       .load-error {
         margin-top: 12px;
-        color: #a22d1e;
+        color: var(--error);
         font-size: 0.85rem;
         line-height: 1.4;
       }
 
       .load-error:empty { display: none; }
-      .data-note { margin: 0; color: #80530c; font-size: 0.78rem; line-height: 1.4; }
+      .data-note { margin: 0; color: var(--notice-text); font-size: 0.78rem; line-height: 1.4; }
 
       .results-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-      .results-header p { margin-bottom: 0; color: #65768d; font-size: 0.84rem; }
+      .results-header p { margin-bottom: 0; color: var(--text-muted); font-size: 0.84rem; }
       .metrics {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -203,13 +494,13 @@
       .metric {
         min-width: 0;
         padding: 14px;
-        border: 1px solid #e1e7ef;
+        border: 1px solid var(--metric-border);
         border-radius: 9px;
-        background: #fbfcfe;
+        background: var(--surface-raised);
       }
 
-      .metric span, .metric small { display: block; color: #687990; font-size: 0.75rem; }
-      .metric strong { display: block; margin: 7px 0 4px; color: #172338; font-size: 1.35rem; }
+      .metric span, .metric small { display: block; color: var(--text-muted); font-size: 0.75rem; }
+      .metric strong { display: block; margin: 7px 0 4px; color: var(--text); font-size: 1.35rem; }
       .metric small { line-height: 1.35; }
 
       .check-grid {
@@ -221,39 +512,40 @@
 
       .check {
         padding: 14px;
-        border: 1px solid #dfe5ee;
+        border: 1px solid var(--border);
         border-radius: 9px;
-        background: #fbfcfe;
+        background: var(--surface-raised);
       }
 
       .check h3 { margin-bottom: 6px; }
-      .check p { margin: 0; color: #52647a; font-size: 0.84rem; line-height: 1.45; }
+      .check p { margin: 0; color: var(--text-secondary); font-size: 0.84rem; line-height: 1.45; }
       .check-status { display: inline-block; margin-top: 9px; font-weight: 750; }
-      .check-status.pass { color: #177044; }
-      .check-status.fail { color: #a22d1e; }
-      .check-status.pending { color: #80530c; }
+      .check-status.pass { color: var(--pass); }
+      .check-status.fail { color: var(--fail); }
+      .check-status.pending { color: var(--pending); }
 
       .diagram {
         margin: 12px 0 18px;
         padding: 12px 12px 8px;
-        border: 1px solid #e3e8f0;
+        border: 1px solid var(--border-soft);
         border-radius: 9px;
       }
 
-      .diagram figcaption { margin: 0 0 6px; color: #34445c; font-size: 0.84rem; font-weight: 700; }
+      .diagram figcaption { margin: 0 0 6px; color: var(--text-label); font-size: 0.84rem; font-weight: 700; }
       .diagram svg { display: block; width: 100%; height: auto; overflow: visible; }
-      .axis-label { fill: #66778d; font: 11px "Segoe UI", Arial, sans-serif; }
-      .zero-line { stroke: #b7c1ce; stroke-width: 1; }
-      .curve { fill: none; stroke: #2471bd; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
-      .beam { stroke: #263c59; stroke-width: 8; stroke-linecap: round; }
-      .support { fill: #dce5ef; stroke: #263c59; stroke-width: 2; }
-      .load-line { stroke: #bd4d35; stroke-width: 1.8; }
-      .load-label { fill: #8b3323; font: 12px "Segoe UI", Arial, sans-serif; }
-      .support-wall { stroke: #263c59; stroke-width: 5; }
+      .axis-label { fill: var(--text-soft); font: 11px "Segoe UI", Arial, sans-serif; }
+      .zero-line { stroke: var(--chart-zero); stroke-width: 1; }
+      .curve { fill: none; stroke: var(--chart-curve); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+      .beam { stroke: var(--chart-beam); stroke-width: 8; stroke-linecap: round; }
+      .support { fill: var(--chart-support-fill); stroke: var(--chart-support-stroke); stroke-width: 2; }
+      .load-line { stroke: var(--chart-load); stroke-width: 1.8; }
+      .load-label { fill: var(--chart-load-text); font: 12px "Segoe UI", Arial, sans-serif; }
+      .load-arrowhead { fill: var(--chart-load); }
+      .support-wall { stroke: var(--chart-support-stroke); stroke-width: 5; }
 
       .footer-note {
         margin: 4px 2px 0;
-        color: #6d7b8e;
+        color: var(--text-soft);
         font-size: 0.75rem;
         line-height: 1.45;
       }
@@ -266,6 +558,7 @@
       @media (max-width: 560px) {
         .shell { width: min(100% - 20px, 720px); padding-top: 18px; }
         .masthead { align-items: flex-start; flex-direction: column; }
+        .header-actions { width: 100%; align-items: flex-end; justify-content: space-between; }
         .panel { padding: 15px; }
         .metrics, .check-grid { grid-template-columns: 1fr; }
         .load-row, .load-row.uniform { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -281,7 +574,20 @@
           <h1>Beam Designer</h1>
           <p class="subtitle">Reactions, internal diagrams, and preliminary deflection / stress screens.</p>
         </div>
-        <span class="badge">Prototype - synthetic data</span>
+        <div class="header-actions">
+          <label class="theme-picker" for="theme-select">
+            Color scheme
+            <select id="theme-select">
+              <option value="light">Light</option>
+              <option value="dark">Dark mode</option>
+              <option value="night">Night mode</option>
+              <option value="ocean">Ocean</option>
+              <option value="sunset">Sunset</option>
+              <option value="forest">Forest</option>
+            </select>
+          </label>
+          <span class="badge">Prototype - synthetic data</span>
+        </div>
       </header>
 
       <div class="warning" role="alert">
@@ -300,10 +606,11 @@
                 <option value="cantilever">Cantilever (fixed at left)</option>
               </select>
             </label>
-            <label>
-              Span <span class="unit">(ft)</span>
-              <input id="span-ft" type="number" min="0.1" max="1000" step="any" value="20" required>
+            <label class="full">
+              <span class="slider-label"><span>Span <span class="unit">(ft)</span></span><output id="span-readout" for="span-ft">20.0 ft</output></span>
+              <input id="span-ft" type="range" min="0" max="100" step="0.5" value="20" required>
             </label>
+            <p class="hint full">Span slider: 0-100 ft in 0.5 ft steps. A zero-length beam cannot be analyzed.</p>
             <label class="full">
               Demo section
               <select id="section-id" disabled>
@@ -327,7 +634,7 @@
             <button type="button" class="small-button" id="add-uniform-load">+ Add uniform</button>
           </div>
           <div id="uniform-loads"></div>
-          <p class="hint">Positive load values act downward; negative values act upward. Beam self-weight is excluded.</p>
+          <p class="hint">Point loads: -20 to 20 kip. Uniform loads: -5 to 5 kip/ft. Negative values act upward; positive values act downward. Position sliders run from 0 to the span. Beam self-weight is excluded.</p>
 
           <div class="divider"></div>
           <div class="field-grid">
@@ -571,6 +878,22 @@
         var uniformLoadContainer = document.getElementById("uniform-loads");
         var errorMessage = document.getElementById("error-message");
         var resultsContent = document.getElementById("results-content");
+        var themeSelect = document.getElementById("theme-select");
+        var themeColorMeta = document.getElementById("theme-color-meta");
+        var themeColors = {
+          light: "#f4f6fa",
+          dark: "#101725",
+          night: "#080d20",
+          ocean: "#eaf5f6",
+          sunset: "#fff4e9",
+          forest: "#edf4eb"
+        };
+
+        themeSelect.addEventListener("change", function () {
+          var theme = themeSelect.value;
+          document.documentElement.setAttribute("data-theme", theme);
+          themeColorMeta.setAttribute("content", themeColors[theme]);
+        });
 
         function escapeHtml(value) {
           return String(value).replace(/[&<>"']/g, function (character) {
@@ -603,7 +926,8 @@
         }
 
         function addLoadRow(kind) {
-          var span = Number(document.getElementById("span-ft").value) || 20;
+          syncLoadRowsFromDOM();
+          var span = Number(document.getElementById("span-ft").value);
           var id = nextLoadId++;
           if (kind === "point") {
             pointLoadRows.push({ id: id, positionFt: span / 2, loadKip: 1 });
@@ -615,12 +939,15 @@
 
         function renderLoadRows() {
           var html = "";
+          var span = Number(document.getElementById("span-ft").value);
           var i;
           for (i = 0; i < pointLoadRows.length; i++) {
             var point = pointLoadRows[i];
             html += '<div class="load-row" data-load-kind="point" data-load-id="' + point.id + '">' +
-              '<label>Load (kip)<input type="number" step="any" value="' + point.loadKip + '" data-field="loadKip" required></label>' +
-              '<label>Position (ft)<input type="number" min="0" step="any" value="' + point.positionFt + '" data-field="positionFt" required></label>' +
+              '<label><span class="slider-label">Load (kip)<output>' + formatNumber(point.loadKip, 2) + ' kip</output></span>' +
+              '<input type="range" min="-20" max="20" step="0.25" value="' + point.loadKip + '" data-field="loadKip" required></label>' +
+              '<label><span class="slider-label">Position (ft)<output>' + formatNumber(point.positionFt, 2) + ' ft</output></span>' +
+              '<input type="range" min="0" max="' + span + '" step="0.25" value="' + point.positionFt + '" data-field="positionFt" required></label>' +
               '<button type="button" class="remove-load" aria-label="Remove point load">Remove</button></div>';
           }
           pointLoadContainer.innerHTML = html || '<p class="hint">No point loads.</p>';
@@ -629,12 +956,109 @@
           for (i = 0; i < uniformLoadRows.length; i++) {
             var line = uniformLoadRows[i];
             html += '<div class="load-row uniform" data-load-kind="uniform" data-load-id="' + line.id + '">' +
-              '<label>Load (kip/ft)<input type="number" step="any" value="' + line.loadKipPerFt + '" data-field="loadKipPerFt" required></label>' +
-              '<label>Start (ft)<input type="number" min="0" step="any" value="' + line.startFt + '" data-field="startFt" required></label>' +
-              '<label>End (ft)<input type="number" min="0" step="any" value="' + line.endFt + '" data-field="endFt" required></label>' +
+              '<label><span class="slider-label">Load (kip/ft)<output>' + formatNumber(line.loadKipPerFt, 2) + ' kip/ft</output></span>' +
+              '<input type="range" min="-5" max="5" step="0.1" value="' + line.loadKipPerFt + '" data-field="loadKipPerFt" required></label>' +
+              '<label><span class="slider-label">Start (ft)<output>' + formatNumber(line.startFt, 2) + ' ft</output></span>' +
+              '<input type="range" min="0" max="' + span + '" step="0.25" value="' + line.startFt + '" data-field="startFt" required></label>' +
+              '<label><span class="slider-label">End (ft)<output>' + formatNumber(line.endFt, 2) + ' ft</output></span>' +
+              '<input type="range" min="0" max="' + span + '" step="0.25" value="' + line.endFt + '" data-field="endFt" required></label>' +
               '<button type="button" class="remove-load" aria-label="Remove uniform load">Remove</button></div>';
           }
           uniformLoadContainer.innerHTML = html || '<p class="hint">No uniform loads.</p>';
+        }
+
+        function refreshLoadReadout(input) {
+          var readout = input.parentNode.querySelector("output");
+          var value = Number(input.value);
+          var field = input.getAttribute("data-field");
+          if (field === "loadKip") {
+            readout.textContent = formatNumber(value, 2) + " kip";
+          } else if (field === "loadKipPerFt") {
+            readout.textContent = formatNumber(value, 2) + " kip/ft";
+          } else {
+            readout.textContent = formatNumber(value, 2) + " ft";
+          }
+        }
+
+        function syncLoadRowsFromDOM() {
+          function sync(container, rows) {
+            var domRows = container.querySelectorAll(".load-row");
+            for (var i = 0; i < domRows.length; i++) {
+              var id = Number(domRows[i].getAttribute("data-load-id"));
+              var fields = domRows[i].querySelectorAll("[data-field]");
+              for (var j = 0; j < rows.length; j++) {
+                if (rows[j].id === id) {
+                  for (var k = 0; k < fields.length; k++) {
+                    rows[j][fields[k].getAttribute("data-field")] = Number(fields[k].value);
+                  }
+                  break;
+                }
+              }
+            }
+          }
+          sync(pointLoadContainer, pointLoadRows);
+          sync(uniformLoadContainer, uniformLoadRows);
+        }
+
+        function updatePositionSliderLimits(spanFt) {
+          var pointInputs = pointLoadContainer.querySelectorAll('[data-field="positionFt"]');
+          var uniformRows = uniformLoadContainer.querySelectorAll(".load-row");
+          var disabled = spanFt <= 0;
+          document.getElementById("add-point-load").disabled = disabled;
+          document.getElementById("add-uniform-load").disabled = disabled;
+          for (var i = 0; i < pointInputs.length; i++) {
+            pointInputs[i].disabled = disabled;
+          }
+          for (i = 0; i < uniformRows.length; i++) {
+            uniformRows[i].querySelector('[data-field="startFt"]').disabled = disabled;
+            uniformRows[i].querySelector('[data-field="endFt"]').disabled = disabled;
+          }
+          if (disabled) {
+            return;
+          }
+
+          for (var i = 0; i < pointInputs.length; i++) {
+            pointInputs[i].max = spanFt;
+            if (Number(pointInputs[i].value) > spanFt) {
+              pointInputs[i].value = spanFt;
+            }
+            pointInputs[i].disabled = false;
+            refreshLoadReadout(pointInputs[i]);
+          }
+
+          for (i = 0; i < uniformRows.length; i++) {
+            var startInput = uniformRows[i].querySelector('[data-field="startFt"]');
+            var endInput = uniformRows[i].querySelector('[data-field="endFt"]');
+            startInput.max = spanFt;
+            endInput.max = spanFt;
+            startInput.disabled = false;
+            endInput.disabled = false;
+            var startFt = Number(startInput.value);
+            var endFt = Number(endInput.value);
+            if (spanFt <= 0) {
+              startFt = 0;
+              endFt = 0;
+            } else if (endFt > spanFt) {
+              var loadWidthFt = endFt - startFt;
+              endFt = spanFt;
+              startFt = Math.min(startFt, Math.max(0, endFt - Math.min(loadWidthFt, spanFt)));
+            } else if (startFt > spanFt) {
+              startFt = Math.max(0, spanFt - 0.25);
+            }
+            if (spanFt > 0 && endFt <= startFt) {
+              if (endFt >= spanFt) {
+                startFt = Math.max(0, spanFt - 0.25);
+                endFt = spanFt;
+              } else {
+                endFt = Math.min(spanFt, startFt + 0.25);
+              }
+            }
+            startInput.value = startFt;
+            endInput.value = endFt;
+            refreshLoadReadout(startInput);
+            refreshLoadReadout(endInput);
+          }
+          syncLoadRowsFromDOM();
         }
 
         function readLoadRows(container, kind, spanFt) {
@@ -782,7 +1206,7 @@
           }
           var svg = '<figure class="diagram"><figcaption>Beam and applied loads (+ downward)</figcaption>' +
             '<svg viewBox="0 0 800 210" role="img" aria-label="Beam support and load diagram">' +
-            '<defs><marker id="load-arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M 0 0 L 8 4 L 0 8 z" fill="#bd4d35"></path></marker></defs>';
+            '<defs><marker id="load-arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path class="load-arrowhead" d="M 0 0 L 8 4 L 0 8 z"></path></marker></defs>';
           svg += '<line class="beam" x1="' + xStart + '" y1="' + beamY + '" x2="' + xEnd + '" y2="' + beamY + '"></line>';
           if (supportType === "cantilever") {
             svg += '<line class="support-wall" x1="' + (xStart - 12) + '" y1="75" x2="' + (xStart - 12) + '" y2="152"></line>' +
@@ -795,25 +1219,54 @@
           for (var i = 0; i < pointLoads.length; i++) {
             var pointX = xCoordinate(pointLoads[i].positionFt);
             var isDown = pointLoads[i].loadKip >= 0;
-            var y1 = isDown ? 43 : 177;
-            var y2 = isDown ? beamY - 7 : beamY + 9;
+            var y1 = isDown ? 52 : beamY - 7;
+            var y2 = isDown ? beamY - 7 : 52;
             svg += '<line class="load-line" x1="' + pointX + '" y1="' + y1 + '" x2="' + pointX + '" y2="' + y2 + '" marker-end="url(#load-arrow)"></line>' +
-              '<text class="load-label" text-anchor="middle" x="' + pointX + '" y="' + (isDown ? 34 : 194) + '">P ' + formatNumber(pointLoads[i].loadKip, 2) + ' kip</text>';
+              '<text class="load-label" text-anchor="middle" x="' + pointX + '" y="23">P ' + formatNumber(pointLoads[i].loadKip, 2) + ' kip</text>';
           }
           for (i = 0; i < distributedLoads.length; i++) {
             var load = distributedLoads[i];
             var loadStart = xCoordinate(load.startFt);
             var loadEnd = xCoordinate(load.endFt);
             var directionDown = load.loadKipPerFt >= 0;
-            var topY = directionDown ? 53 : 171;
-            var arrowY = directionDown ? beamY - 7 : beamY + 9;
+            var topY = 62;
+            var arrowY = directionDown ? beamY - 7 : 52;
             var arrowCount = 8;
-            svg += '<line class="load-line" x1="' + loadStart + '" y1="' + topY + '" x2="' + loadEnd + '" y2="' + topY + '"></line>';
+            var gaps = [];
+            for (var p = 0; p < pointLoads.length; p++) {
+              if (pointLoads[p].positionFt >= load.startFt && pointLoads[p].positionFt <= load.endFt) {
+                var pointGapX = xCoordinate(pointLoads[p].positionFt);
+                gaps.push({
+                  start: Math.max(loadStart, pointGapX - 8),
+                  end: Math.min(loadEnd, pointGapX + 8)
+                });
+              }
+            }
+            gaps.sort(function (a, b) { return a.start - b.start; });
+            var segmentStart = loadStart;
+            for (var g = 0; g < gaps.length; g++) {
+              if (gaps[g].start > segmentStart) {
+                svg += '<line class="load-line" x1="' + segmentStart + '" y1="' + topY + '" x2="' + gaps[g].start + '" y2="' + topY + '"></line>';
+              }
+              segmentStart = Math.max(segmentStart, gaps[g].end);
+            }
+            if (segmentStart < loadEnd) {
+              svg += '<line class="load-line" x1="' + segmentStart + '" y1="' + topY + '" x2="' + loadEnd + '" y2="' + topY + '"></line>';
+            }
             for (var j = 0; j <= arrowCount; j++) {
               var arrowX = loadStart + (loadEnd - loadStart) * j / arrowCount;
-              svg += '<line class="load-line" x1="' + arrowX + '" y1="' + topY + '" x2="' + arrowX + '" y2="' + arrowY + '" marker-end="url(#load-arrow)"></line>';
+              var conflictsWithPoint = false;
+              for (p = 0; p < pointLoads.length; p++) {
+                if (Math.abs(arrowX - xCoordinate(pointLoads[p].positionFt)) < 10) {
+                  conflictsWithPoint = true;
+                  break;
+                }
+              }
+              if (!conflictsWithPoint) {
+                svg += '<line class="load-line" x1="' + arrowX + '" y1="' + topY + '" x2="' + arrowX + '" y2="' + arrowY + '" marker-end="url(#load-arrow)"></line>';
+              }
             }
-            svg += '<text class="load-label" text-anchor="middle" x="' + ((loadStart + loadEnd) / 2) + '" y="' + (directionDown ? 40 : 196) + '">w ' + formatNumber(load.loadKipPerFt, 2) + ' kip/ft</text>';
+            svg += '<text class="load-label" text-anchor="middle" x="' + ((loadStart + loadEnd) / 2) + '" y="43">w ' + formatNumber(load.loadKipPerFt, 2) + ' kip/ft</text>';
           }
           svg += '<text class="axis-label" text-anchor="middle" x="' + (xStart + beamWidth / 2) + '" y="165">Span ' + formatNumber(spanFt, 2) + ' ft</text></svg></figure>';
           return svg;
@@ -952,8 +1405,27 @@
           event.preventDefault();
           analyzeForm();
         });
+        var spanInput = document.getElementById("span-ft");
+        spanInput.addEventListener("input", function () {
+          var spanFt = Number(spanInput.value);
+          document.getElementById("span-readout").textContent = formatNumber(spanFt, 1) + " ft";
+          updatePositionSliderLimits(spanFt);
+        });
+        pointLoadContainer.addEventListener("input", function (event) {
+          if (event.target.type === "range") {
+            refreshLoadReadout(event.target);
+            syncLoadRowsFromDOM();
+          }
+        });
+        uniformLoadContainer.addEventListener("input", function (event) {
+          if (event.target.type === "range") {
+            refreshLoadReadout(event.target);
+            syncLoadRowsFromDOM();
+          }
+        });
         pointLoadContainer.addEventListener("click", function (event) {
           if (event.target.classList.contains("remove-load")) {
+            syncLoadRowsFromDOM();
             var row = event.target.closest(".load-row");
             var id = Number(row.getAttribute("data-load-id"));
             pointLoadRows = pointLoadRows.filter(function (load) { return load.id !== id; });
@@ -962,6 +1434,7 @@
         });
         uniformLoadContainer.addEventListener("click", function (event) {
           if (event.target.classList.contains("remove-load")) {
+            syncLoadRowsFromDOM();
             var row = event.target.closest(".load-row");
             var id = Number(row.getAttribute("data-load-id"));
             uniformLoadRows = uniformLoadRows.filter(function (load) { return load.id !== id; });
